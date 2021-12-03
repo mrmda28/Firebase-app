@@ -45,8 +45,15 @@ class MainViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 19)
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(signUp), for: .touchUpInside)
         return button
     }()
+    
+    @objc func signUp() {
+        let signUpVC = SignUpViewController()
+        signUpVC.modalPresentationStyle = .fullScreen
+        present(signUpVC, animated: true, completion: nil)
+    }
     
     let logInLabel: UILabel = {
         let label = UILabel()
@@ -66,8 +73,15 @@ class MainViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 19)
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(logIn), for: .touchUpInside)
         return button
     }()
+    
+    @objc func logIn() {
+        let logInVC = LogInViewController()
+        logInVC.modalPresentationStyle = .fullScreen
+        present(logInVC, animated: true, completion: nil)
+    }
 
     override func viewDidLoad() {
         
@@ -145,16 +159,4 @@ class MainViewController: UIViewController {
             logInButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -12)
         ])
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

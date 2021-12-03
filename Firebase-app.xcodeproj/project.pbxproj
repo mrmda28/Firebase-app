@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A2281A04F123E46A506A0A8E /* Pods_Firebase_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59C5A92BD8D4541719B9D2B /* Pods_Firebase_app.framework */; };
+		E09D47D4275A5B7F00D228E4 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09D47D3275A5B7F00D228E4 /* LogInViewController.swift */; };
 		E0CD64AF2757FCA00012BA95 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD64AE2757FCA00012BA95 /* MainViewController.swift */; };
-		E0CD64B127581C6F0012BA95 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD64B027581C6F0012BA95 /* LogInViewController.swift */; };
 		E0CD64B327581C840012BA95 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD64B227581C840012BA95 /* SignUpViewController.swift */; };
 		E0CD64B527581C970012BA95 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD64B427581C970012BA95 /* ProfileViewController.swift */; };
 		E0E476E4275241C800867CA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E476E3275241C800867CA5 /* AppDelegate.swift */; };
@@ -23,8 +23,8 @@
 		298AAA87B713CA4787092E70 /* Pods-Firebase-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase-app.debug.xcconfig"; path = "Target Support Files/Pods-Firebase-app/Pods-Firebase-app.debug.xcconfig"; sourceTree = "<group>"; };
 		85F27A158C4CEB5088193FE6 /* Pods-Firebase-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase-app.release.xcconfig"; path = "Target Support Files/Pods-Firebase-app/Pods-Firebase-app.release.xcconfig"; sourceTree = "<group>"; };
 		D59C5A92BD8D4541719B9D2B /* Pods_Firebase_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Firebase_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E09D47D3275A5B7F00D228E4 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		E0CD64AE2757FCA00012BA95 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		E0CD64B027581C6F0012BA95 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		E0CD64B227581C840012BA95 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E0CD64B427581C970012BA95 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E0E476E0275241C800867CA5 /* Firebase-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Firebase-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,7 +93,7 @@
 				E0E476F1275241CA00867CA5 /* Info.plist */,
 				E0E476F9275246F900867CA5 /* GoogleService-Info.plist */,
 				E0CD64AE2757FCA00012BA95 /* MainViewController.swift */,
-				E0CD64B027581C6F0012BA95 /* LogInViewController.swift */,
+				E09D47D3275A5B7F00D228E4 /* LogInViewController.swift */,
 				E0CD64B227581C840012BA95 /* SignUpViewController.swift */,
 				E0CD64B427581C970012BA95 /* ProfileViewController.swift */,
 			);
@@ -217,9 +217,9 @@
 			files = (
 				E0CD64B327581C840012BA95 /* SignUpViewController.swift in Sources */,
 				E0E476E4275241C800867CA5 /* AppDelegate.swift in Sources */,
+				E09D47D4275A5B7F00D228E4 /* LogInViewController.swift in Sources */,
 				E0E476E6275241C800867CA5 /* SceneDelegate.swift in Sources */,
 				E0CD64B527581C970012BA95 /* ProfileViewController.swift in Sources */,
-				E0CD64B127581C6F0012BA95 /* LogInViewController.swift in Sources */,
 				E0CD64AF2757FCA00012BA95 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

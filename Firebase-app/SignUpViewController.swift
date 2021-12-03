@@ -9,22 +9,63 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
+    
+    let exitButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("×", for: .normal)
+        button.setTitleColor(.darkGray, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 35)
+        button.addTarget(self, action: #selector(exit), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func exit() {
+        let mainVC = MainViewController()
+        mainVC.modalPresentationStyle = .fullScreen
+        dismiss(animated: true, completion: nil)
+    }
+    
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Sign Up Page"
+        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.textAlignment = .center
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .systemBackground
 
-        // Do any additional setup after loading the view.
+        setupViews()
+        setupConstraints()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+    private func setupViews() {
+                
+        view.addSubview(exitButton)
+        view.addSubview(titleLabel)
     }
-    */
+            
+    private func setupConstraints() {
+            
+        let safeArea = view.safeAreaLayoutGuide
+//        let viewFrame = view.bounds
+                
+        NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 
+            titleLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 12),
+            titleLabel.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -12)
+        ])
+                
+        NSLayoutConstraint.activate([
+            exitButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 12),
+            exitButton.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 12)
+        ])
+    }
 }
