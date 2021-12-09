@@ -21,8 +21,6 @@ class SignUpViewController: UIViewController {
     }()
     
     @objc func exit() {
-        let mainVC = MainViewController()
-        mainVC.modalPresentationStyle = .fullScreen
         dismiss(animated: true, completion: nil)
     }
     
