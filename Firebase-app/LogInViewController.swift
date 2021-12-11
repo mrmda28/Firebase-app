@@ -21,8 +21,6 @@ class LogInViewController: UIViewController {
     }()
     
     @objc func exit() {
-        let mainVC = MainViewController()
-        mainVC.modalPresentationStyle = .fullScreen
         dismiss(animated: true, completion: nil)
     }
     
@@ -67,7 +65,7 @@ class LogInViewController: UIViewController {
     let logInButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(red: 75/255.0, green: 179/255.0, blue: 75/255.0, alpha: 1.0)
+        button.backgroundColor = UIColor(red: 37/255.0, green: 25/255.0, blue: 195/255.0, alpha: 1.0)
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 19)
@@ -77,7 +75,10 @@ class LogInViewController: UIViewController {
     }()
     
     @objc func logIn() {
+        guard fieldEmail.text != "", fieldPassword.text != "" else { return showAlert("Email or password can't be empty.") }
+        
         spinner.startAnimating()
+        
         FirebaseManager.shared.logInWithEmail(email: fieldEmail.text, password: fieldPassword.text) { (verified, status) in
             if verified == true {
                 let profileVC = ProfileViewController()
@@ -179,10 +180,11 @@ class LogInViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             spinner.heightAnchor.constraint(equalToConstant: 90),
-            spinner.widthAnchor.constraint(equalToConstant: 90)
+            spinner.widthAnchor.constraint(equalToConstant: 90),
+            
+            spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 }

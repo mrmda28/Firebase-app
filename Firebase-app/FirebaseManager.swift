@@ -14,13 +14,31 @@ class FirebaseManager {
     static let shared = FirebaseManager()
     
     func logInWithEmail(email: String?, password: String?, completion: @escaping (Bool, String) -> Void) {
-        
-        guard email != "", password != "" else { return completion(false, "Email or password can't be empty.") }
 
         Auth.auth().signIn(withEmail: email!, password: password!) { authResult, error in
             
             if error == nil {
                 completion(true, (authResult?.user.email)!)
+            } else {
+                completion(false, (error?.localizedDescription)!)
+            }
+        }
+    }
+    
+    func createUserWithEmail(email: String?, password: String?, completion: @escaping (Bool, String) -> Void) {
+        
+        Auth.auth().createUser(withEmail: email!, password: password!) { authResult, error in
+            
+            if error == nil {
+                
+                Auth.auth().signIn(withEmail: email!, password: password!) { authResult, error in
+                    
+                    if error == nil {
+                        completion(true, (authResult?.user.email)!)
+                    } else {
+                        completion(false, (error?.localizedDescription)!)
+                    }
+                }
             } else {
                 completion(false, (error?.localizedDescription)!)
             }

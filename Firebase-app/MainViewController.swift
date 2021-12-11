@@ -68,7 +68,7 @@ class MainViewController: UIViewController {
     let logInButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .darkGray
+        button.backgroundColor = UIColor(red: 37/255.0, green: 25/255.0, blue: 195/255.0, alpha: 1.0)
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 19)

@@ -88,7 +88,6 @@
 		E0E476E2275241C800867CA5 /* Firebase-app */ = {
 			isa = PBXGroup;
 			children = (
-				E06103BE2761F205006F9B7D /* FirebaseManager.swift */,
 				E0E476E3275241C800867CA5 /* AppDelegate.swift */,
 				E0E476E5275241C800867CA5 /* SceneDelegate.swift */,
 				E0E476EC275241CA00867CA5 /* Assets.xcassets */,
@@ -99,6 +98,7 @@
 				E09D47D3275A5B7F00D228E4 /* LogInViewController.swift */,
 				E0CD64B227581C840012BA95 /* SignUpViewController.swift */,
 				E0CD64B427581C970012BA95 /* ProfileViewController.swift */,
+				E06103BE2761F205006F9B7D /* FirebaseManager.swift */,
 			);
 			path = "Firebase-app";
 			sourceTree = "<group>";
