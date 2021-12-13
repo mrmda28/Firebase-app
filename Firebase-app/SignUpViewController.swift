@@ -10,7 +10,7 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     
-    let exitButton: UIButton = {
+    private let exitButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("×", for: .normal)
@@ -20,11 +20,11 @@ class SignUpViewController: UIViewController {
         return button
     }()
     
-    @objc func exit() {
+    @objc private func exit() {
         dismiss(animated: true, completion: nil)
     }
     
-    let titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Sign Up Page"
@@ -33,7 +33,7 @@ class SignUpViewController: UIViewController {
         return label
     }()
     
-    let fieldEmail: UITextField = {
+    private let emailField: UITextField = {
         let field = UITextField()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: field.frame.height))
@@ -47,7 +47,7 @@ class SignUpViewController: UIViewController {
         return field
     }()
     
-    let fieldPassword: UITextField = {
+    private let passwordField: UITextField = {
         let field = UITextField()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: field.frame.height))
@@ -62,7 +62,7 @@ class SignUpViewController: UIViewController {
         return field
     }()
     
-    let fieldConfirmPassword: UITextField = {
+    private let confirmPasswordField: UITextField = {
         let field = UITextField()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: field.frame.height))
@@ -77,7 +77,7 @@ class SignUpViewController: UIViewController {
         return field
     }()
     
-    let signUpButton: UIButton = {
+    private let signUpButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(red: 75/255.0, green: 179/255.0, blue: 75/255.0, alpha: 1.0)
@@ -89,27 +89,22 @@ class SignUpViewController: UIViewController {
         return button
     }()
     
-    @objc func signUp() {
-        guard fieldEmail.text != "", fieldPassword.text != "", fieldConfirmPassword.text != "" else { return showAlert("Email or password can't be empty.") }
+    @objc private func signUp() {
+        guard emailField.text != "", passwordField.text != "", confirmPasswordField.text != "" else { return showAlert("Email or password can't be empty.") }
         
-        guard fieldPassword.text == fieldConfirmPassword.text else { return showAlert("Passwords do not match.") }
+        guard passwordField.text == confirmPasswordField.text else { return showAlert("Passwords do not match.") }
         
         spinner.startAnimating()
         
-        FirebaseManager.shared.createUserWithEmail(email: fieldEmail.text, password: fieldPassword.text) { (verified, status) in
-            if verified == true {
-                let profileVC = ProfileViewController()
-                profileVC.titleLabel.text = status
-                profileVC.modalPresentationStyle = .fullScreen
-                self.present(profileVC, animated: true, completion: nil)
-            } else {
-                self.showAlert(status)
+        FirebaseManager.shared.createUserWithEmail(email: emailField.text, password: passwordField.text) { (verified, status) in
+            if verified == false {
+                self.showAlert(status!)
             }
             self.spinner.stopAnimating()
         }
     }
     
-    let spinner: UIActivityIndicatorView = {
+    private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.layer.cornerRadius = 20
@@ -119,7 +114,7 @@ class SignUpViewController: UIViewController {
         return spinner
     }()
     
-    func showAlert(_ message: String) {
+    private func showAlert(_ message: String) {
       let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
       let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
       alert.addAction(okAction)
@@ -143,9 +138,9 @@ class SignUpViewController: UIViewController {
                 
         view.addSubview(exitButton)
         view.addSubview(titleLabel)
-        view.addSubview(fieldEmail)
-        view.addSubview(fieldPassword)
-        view.addSubview(fieldConfirmPassword)
+        view.addSubview(emailField)
+        view.addSubview(passwordField)
+        view.addSubview(confirmPasswordField)
         view.addSubview(signUpButton)
         view.addSubview(spinner)
     }
@@ -153,7 +148,6 @@ class SignUpViewController: UIViewController {
     private func setupConstraints() {
             
         let safeArea = view.safeAreaLayoutGuide
-//        let viewFrame = view.bounds
         
         NSLayoutConstraint.activate([
             exitButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 12),
@@ -165,37 +159,37 @@ class SignUpViewController: UIViewController {
 
             titleLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 12),
             titleLabel.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -12),
-            titleLabel.bottomAnchor.constraint(equalTo: fieldEmail.topAnchor, constant: -12)
+            titleLabel.bottomAnchor.constraint(equalTo: emailField.topAnchor, constant: -12)
         ])
 
         NSLayoutConstraint.activate([
-            fieldEmail.heightAnchor.constraint(equalToConstant: 44),
+            emailField.heightAnchor.constraint(equalToConstant: 44),
 
-            fieldEmail.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emailField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
-            fieldEmail.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 12),
-            fieldEmail.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -12),
-            fieldEmail.bottomAnchor.constraint(equalTo: fieldPassword.topAnchor, constant: -12)
-        ])
-        
-        NSLayoutConstraint.activate([
-            fieldPassword.heightAnchor.constraint(equalToConstant: 44),
-            
-            fieldPassword.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            fieldPassword.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
-            fieldPassword.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 12),
-            fieldPassword.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -12)
+            emailField.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 12),
+            emailField.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -12),
+            emailField.bottomAnchor.constraint(equalTo: passwordField.topAnchor, constant: -12)
         ])
         
         NSLayoutConstraint.activate([
-            fieldConfirmPassword.heightAnchor.constraint(equalToConstant: 44),
+            passwordField.heightAnchor.constraint(equalToConstant: 44),
             
-            fieldConfirmPassword.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            passwordField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            passwordField.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
-            fieldConfirmPassword.topAnchor.constraint(equalTo: fieldPassword.bottomAnchor, constant: 12),
-            fieldConfirmPassword.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 12),
-            fieldConfirmPassword.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -12)
+            passwordField.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 12),
+            passwordField.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -12)
+        ])
+        
+        NSLayoutConstraint.activate([
+            confirmPasswordField.heightAnchor.constraint(equalToConstant: 44),
+            
+            confirmPasswordField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            confirmPasswordField.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 12),
+            confirmPasswordField.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 12),
+            confirmPasswordField.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -12)
         ])
         
         NSLayoutConstraint.activate([
@@ -203,7 +197,7 @@ class SignUpViewController: UIViewController {
             
             signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            signUpButton.topAnchor.constraint(equalTo: fieldConfirmPassword.bottomAnchor, constant: 12),
+            signUpButton.topAnchor.constraint(equalTo: confirmPasswordField.bottomAnchor, constant: 12),
             signUpButton.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 12),
             signUpButton.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -12)
         ])

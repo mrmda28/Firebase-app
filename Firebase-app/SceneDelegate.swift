@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -25,9 +26,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         
-        window?.rootViewController = MainViewController()
-        
-        window?.makeKeyAndVisible()
+        _ = Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                self.window?.rootViewController = ProfileViewController()
+            } else {
+                self.window?.rootViewController = MainViewController()
+            }
+            self.window?.makeKeyAndVisible()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

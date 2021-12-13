@@ -7,17 +7,18 @@
 //
 
 import UIKit
+import Firebase
 
 class MainViewController: UIViewController {
     
-    let firebaseImage: UIImageView = {
+    private let firebaseImage: UIImageView = {
         let image = UIImageView(image: UIImage(named: "Firebase logo"))
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = 30
         return image
     }()
     
-    let titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Firebase Auth App"
@@ -26,7 +27,7 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    let descriptionLabel: UILabel = {
+    private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Description text"
@@ -37,7 +38,7 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    let signUpButton: UIButton = {
+    private let signUpButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(red: 75/255.0, green: 179/255.0, blue: 75/255.0, alpha: 1.0)
@@ -49,13 +50,13 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    @objc func signUp() {
+    @objc private func signUp() {
         let signUpVC = SignUpViewController()
         signUpVC.modalPresentationStyle = .fullScreen
         present(signUpVC, animated: true, completion: nil)
     }
     
-    let logInLabel: UILabel = {
+    private let logInLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Already have an account?"
@@ -65,7 +66,7 @@ class MainViewController: UIViewController {
         return label
     }()
 
-    let logInButton: UIButton = {
+    private let logInButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(red: 37/255.0, green: 25/255.0, blue: 195/255.0, alpha: 1.0)
@@ -77,14 +78,13 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    @objc func logIn() {
+    @objc private func logIn() {
         let logInVC = LogInViewController()
         logInVC.modalPresentationStyle = .fullScreen
         present(logInVC, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
